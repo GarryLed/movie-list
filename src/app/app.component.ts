@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MovieService } from './movie.service';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,13 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'movie-list';
 
-  moviesList = [
-    {id: 1, title: "Back to the future", year: '1984', director: 'Robert Zemeckis' },
-    {id:2, title: "Requiem for a Dream", year: '2000', director: 'Darren Aronofsky'},
-    {id:3, title: "The Social Network", year: '2010', director: 'Darren Aronofsky'},
-    {id:4, title: "Fight Club", year: '1999', director: 'David Findher'}
-  
-  ]
+  movies:any[]=[]; 
+
+  constructor(private movieService:MovieService) {}
+
+  ngOnInit() {
+    this.movies=this.movieService.getMovies();
+    console.log(this.movies);
+  }
   
 }
